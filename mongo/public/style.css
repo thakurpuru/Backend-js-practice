@@ -1,0 +1,30 @@
+.chart{
+        margin: 10px;
+        padding: 10px;
+        background-color: rgb(158, 168, 176);
+        border-radius: 20px;
+        width: 300px;
+    }
+.msg{
+    background-color: #2B124C;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+}
+.btn{
+    padding: 12px;
+    border-radius: 10px;
+    background-color: #052659;
+    color: white;
+    width: 200px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    color:  black;
+    font-weight: bolder;
+    background-color: white;
+}
+
+

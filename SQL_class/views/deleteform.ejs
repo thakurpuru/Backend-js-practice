@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete data</title>
+</head>
+<body>
+    <h3>Verify password to Delete account</h3>
+
+    <h3><%= id %></h3>
+    <% if (error) { %>
+        <p style="color:red; text-align:center;"><%= error %></p>
+    <% } %>
+    <form action="/<%= id %>/delete?_method=DELETE" method="post">
+        <input type="password" name="password" placeholder="Enter password">
+        <button>Delete</button>
+    </form>
+    
+</body>
+</html>

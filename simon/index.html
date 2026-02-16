@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Game</title>
+</head>
+<style>
+    .box{
+        border: 2px solid black;
+        width: 250px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        column-gap: 20px;
+        align-items: center;
+        border-radius: 20px;
+        padding: 10px;
+    }
+    .back{
+        height: 100px;
+        width: 100px;
+        border: 2px solid black;
+        border-radius: 20px;
+    }
+    .back.disabled{
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    h1{
+        text-align: center;
+    }
+    #btn1{
+        background-color: red;
+    }
+    #btn2{
+        background-color: green;
+    }
+    #btn3{
+        background-color: yellow;
+    }
+    #btn4{
+        background-color: blue;
+    }
+    .controls{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+    .game-btn{
+        border: 2px solid black;
+        border-radius: 20px;
+        font-size: medium;
+        background-color: rgb(109, 181, 87);
+        color: white;
+        padding: 10px;
+
+    }
+    .game-btn:disabled{
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+    #startBtn:hover:not(:disabled){
+        background-color: white;
+        color: black;
+    }
+</style>
+<body><h1>Simon Game</h1>
+    <div class="container">
+        <div class="box">
+            <div id="btn1" class="back disabled"></div>
+            <div id="btn2" class="back disabled"></div>
+            <div id="btn3" class="back disabled"></div>
+            <div id="btn4" class="back disabled"></div>
+        </div>
+    </div>
+    <div class="controls">
+        <button id="startBtn" class="game-btn"> Start  Game</button>
+    </div>
+
+</body>
+<script>
+    function changeColor(id){
+        let btn=document.querySelector(id);
+        let original=getComputedStyle(btn).backgroundColor;
+        btn.style.backgroundColor="white";
+        setTimeout(()=>{
+            btn.style.backgroundColor=original;
+        },250)
+    }
+     let arr1=[];
+     let arr2=[];
+    let btns=document.querySelectorAll(".back");
+    let box=document.querySelector(".box");
+    let startBtn=document.querySelector("#startBtn");
+
+    function randomChange(){
+        let id=Math.floor(Math.random()*4)+1;
+        let ID=`#btn${id}`;
+        arr1.push(ID);
+        changeColor(ID);
+
+    }
+
+    startBtn.addEventListener("click",(event)=>{
+
+        arr1.length=0;
+        arr2.length=0;
+        startBtn.disabled=true;
+        btns.forEach((btn)=>{
+            btn.classList.remove("disabled");
+        });
+        randomChange(); 
+    });
+
+    function resetgame(){
+        arr1.length=0;
+        arr2.length=0;
+        startBtn.disabled=false;
+        btns.forEach((btn)=>{
+            btn.classList.add("disabled");
+        });
+    }
+
+    btns.forEach((btn)=>{
+        btn.addEventListener("click",(evant)=>{
+            let btnid=`#${evant.target.id}`;
+            arr2.push(btnid);
+            changeColor(btnid);
+            let currIdx=arr2.length-1;
+            if(arr2[currIdx]===arr1[currIdx]){
+                if(arr1.length==arr2.length){
+                    arr2.length=0;
+                    setTimeout(()=>{
+                        randomChange();
+                    },1000)
+                }
+            }else{
+                console.log(arr1);
+                resetgame();
+            }
+        })
+    })
+    
+</script>
+</html>

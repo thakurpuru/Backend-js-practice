@@ -1,0 +1,49 @@
+<% layout("./layouts/boilerplate") %>
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-12 col-md-8 col-lg-6 text-dark">
+        <h2 class="p3-3">Edit Your Listing</h2>
+            <form action="/listings/<%= listing._id %>?_method=PUT" method="post">
+                <div class="form-group my-2">
+                    <label for="exampleInputEmail1">Title</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title" name="title" value="<%= listing.title %>">
+                </div>
+                <div class="form-group my-2">
+                    <label for="exampleFormControlTextarea1">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  placeholder="Enter description" name="description"><%= listing.description %></textarea>
+                </div>
+                <div class="form-group my-2">
+                    <label for="exampleInputPassword1">Image URL/link</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter image URL/link" name="url" value="<%= listing.image.url %>">
+                </div>
+
+                <div class="row">
+                    <div class="form-group col my-2">
+                        <label for="exampleInputPassword1">Price</label>
+                        <div class="input-group">
+                            <div class="input-group-text">&#8377;</div>
+                            
+                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Price" name="price" value="<%= listing.price %>">
+                        </div>
+                    </div>
+                    <div class="form-group col my-2">
+                        <label for="exampleInputPassword1">Country</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter country" name="country" value="<%= listing.country %>">
+                    </div>
+                </div>
+                <div class="form-group my-2">
+                    <label for="exampleInputPassword1">Location</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter location" name="location" value="<%= listing.location %>">
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <button type="submit" class="btn btn-danger my-2 rounded p-2 w-100">
+                            Make Changes
+                        </button>
+                    </div>
+                </div>
+            </form>
+    </div>
+ </div>
+
+
+

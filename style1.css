@@ -1,0 +1,25 @@
+body{
+   text-align: center;
+}
+.box{
+    border: 2px solid black;
+    height: 200px;
+    width: 600px;
+    text-align: center;
+    margin-left: 340px;
+    margin-top: 30px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+#btn{
+    height: 300px;
+    width: 300px;
+    border: 2px solid black;
+}
+

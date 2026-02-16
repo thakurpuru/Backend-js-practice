@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show All Data</title>
+</head>
+<style>
+    table,td,th{
+        border: 2px black solid;
+    }
+    .btn{
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+    }
+    .btn button{
+        padding: 10px;
+        font-size: medium;
+        border: 2px solid black;
+        border-radius: 20px;
+        background-color: blue;
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .btn button:hover{
+        background-color: white;
+        color: blue;
+    }
+
+    .alert {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+</style>
+<body>
+    <% if (query.msg === "deleted") { %>
+        <div class="alert success" id="notification">✅ Account deleted successfully</div>
+    <% } %>
+    <form action="/user/new" method="get">
+        <div class="btn"><button>Add New data</button></div>
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Edit Button</th>
+            <th>Delete Button</th>
+        </tr>
+        <% for(let data of result){ %>
+        <tr>
+            <td><%=data.id %></td>
+            <td><%=data.username %></td>
+            <td><%=data.email %></td>
+            <td>
+                <form action="/<%= data.id %>/edit" method="get">
+                <div class="btn"><button>Edit</button></div>
+                </form>
+            </td>
+            <td>
+                <form action="/<%= data.id %>/delete" method="get">
+                <div class="btn"><button>Delete</button></div>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+</body>
+<script>
+     setTimeout(() => {
+    const notif = document.getElementById("notification");
+    if (notif) {
+      notif.style.opacity = "0";
+      notif.style.transition = "opacity 0.5s ease";
+
+      setTimeout(() => notif.remove(), 500);
+    }
+  }, 3000); // 3 seconds
+</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>ALL Charts</title>
+</head>
+
+<body>
+    <h3>Al Charts</h3>
+    <form action="/charts/new">
+        <button class="btn">Add new chart</button>
+    </form>
+    <% for(let chart of charts){ %>
+        <div class="chart">
+        <p>From : <%= chart.from%></p>
+        <div class="msg">
+            <p><%= chart.message %></p>
+            <form action="/charts/<%= chart._id %>/edit">
+                <button class="btn">Edit</button>
+            </form>
+        </div>
+        <p>Recived by <%= chart.to %></p>
+        <br>
+        <p><%= chart.created_at.toString().split(" ")[4] %></p>
+        <p><%= chart.created_at.toString().split(" ").slice(0,4).join(" ") %></p>
+        <form action="/charts/<%= chart._id %>?_method=DELETE" method="post">
+                <button class="btn">Delete</button>
+            </form>
+        </div>
+    <% } %>
+</body>
+</html>

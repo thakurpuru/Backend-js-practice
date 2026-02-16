@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List</title>
+</head>
+<style>
+    #delbtn{
+        margin-left: 100px;
+    }
+    .task-item{
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        margin-top: 8px;
+    }
+    li{
+        margin: 5px;
+    }
+</style>
+<body>
+    <h3>To do List</h3>
+    <form >
+        <input type="text" id="task" placeholder="Add task">
+        <button class="btn">Add</button>
+    </form>
+
+    <ul class="main">
+        <li class="task-item">Study  <button class="delbtn">Delete</button></li>
+        <li class="task-item">Sleep <button class="delbtn">Delete</button></li>
+    </ul>
+</body>
+<script>
+    let btn=document.querySelector(".btn");
+
+    btn.addEventListener("click",(event)=>{
+        console.dir(event.target);
+        let input=document.querySelector("#task");
+        let new_li=document.createElement("li");
+        new_li.classList.add("task-item");
+        new_li.innerText=input.value;
+        let new_btn=document.createElement("button");
+        new_btn.innerText="Delete";
+        new_btn.classList.add("delbtn");
+        new_li.appendChild(new_btn);
+        let ul=document.querySelector(".main");
+        ul.appendChild(new_li);
+        input.value="";
+        console.dir(input);
+        event.preventDefault();
+    });
+
+    // let ul=document.querySelector("ul");
+    // ul.addEventListener("click",(event)=>{
+    //     if(event.target.nodeName==='BUTTON'){
+    //         event.target.parentElement.remove();
+    //     }
+    // })
+    
+    let btns=document.querySelectorAll(".delbtn");
+    btns.forEach((btn)=>{
+        btn.addEventListener("click",(event)=>{
+            event.target.parentElement.remove();
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,171 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+  flex: 1;
+}
+.navbar{
+    height: 5rem;
+    background-color: #ffffff !important;
+}
+.navbar-collapse{
+  background-color: #ffffff !important;
+}
+.fa-compass{
+    font-size: 2rem;
+    color: #fe424d;
+}
+.nav-link{
+    color: #222222 !important;
+}
+
+.f-info-links a{
+  text-decoration: none;
+  color: #222222;
+}
+.f-info-links a:hover{
+  text-decoration: underline;
+}
+
+.f-info-socials,.f-info-links,.f-info-brand{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-info-socials i{
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+.f-info{
+  text-align: center;
+  height: 8rem;
+  background-color: #ebebeb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-evenly; 
+}
+.ab-a,
+.ab-a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.image-container{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+    height: 18rem;
+    overflow: hidden;
+    position: relative;
+}
+.image-container img{
+    border-radius: 1.2rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card{
+  border: 0 !important;
+}
+.card-body{
+  padding: 1rem !important;
+}
+.card-text{
+  font-weight:600 !important;
+}
+.btn{
+  width: 6rem !important;
+}
+/* Page Title */
+.ab-page-title {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  padding: 0 24px;
+}
+
+.ab-page-title h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #222222;
+}
+
+/* Main Container */
+.ab-container {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+/* Cards Grid */
+.ab-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+  padding: 0 24px;
+}
+
+/* Card */
+.ab-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #ebebeb;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ab-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Image */
+.ab-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ab-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.ab-card:hover .ab-image-container img {
+  transform: scale(1.05);
+}
+
+/* Card Content */
+.ab-card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ab-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222222;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ab-price {
+  font-size: 14px;
+  color: #717171;
+  margin: 0;
+}
+
+.ab-price::before {
+  content: "₹";
+  font-size: 14px;
+}
+
