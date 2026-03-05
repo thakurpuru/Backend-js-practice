@@ -4,21 +4,30 @@
     <div class="col-12 col-md-8 col-lg-6 text-dark">
         <h2 class="ps-3">Add Your Place</h2>
 
-        <form action="/listings" method="post">
+        <form action="/listings" method="post" novalidate class="needs-validation">
             
             <div class="form-group my-2">
                 <label>Title</label>
-                <input type="text" class="form-control" placeholder="Enter title" name="title" required>
+                <input type="text" class="form-control" placeholder="Enter title" name="listing[title]" required>
+                <div class="invalid-feedback">
+                    Please enter a valid title.
+                </div>
             </div>
 
             <div class="form-group my-2">
                 <label>Description</label>
-                <textarea class="form-control" rows="3" placeholder="Enter description" name="description"></textarea>
+                <textarea class="form-control" rows="3" placeholder="Enter description" name="listing[description]" required></textarea>
+                <div class="invalid-feedback">
+                    Please enter a valid description.
+                </div>
             </div>
 
             <div class="form-group my-2">
                 <label>Image URL/link</label>
-                <input type="text" class="form-control" placeholder="Enter image URL/link" name="url">
+                <input type="text" class="form-control" placeholder="Enter image URL/link" name="listing[image][url]" required>
+                <div class="invalid-feedback">
+                    Please enter a valid image URL/link.
+                </div>
             </div>
 
             <div class="row">
@@ -26,19 +35,28 @@
                     <label>Price</label>
                     <div class="input-group">
                         <div class="input-group-text">&#8377;</div>
-                        <input type="number" class="form-control" placeholder="Enter Price" name="price">
+                        <input type="number" class="form-control" placeholder="Enter Price" name="listing[price]" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid price.
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-group col my-2">
                     <label>Country</label>
-                    <input type="text" class="form-control" placeholder="Enter country" name="country">
+                    <input type="text" class="form-control" placeholder="Enter country" name="listing[country]" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid country.
+                    </div>
                 </div>
             </div>
 
             <div class="form-group my-2">
                 <label>Location</label>
-                <input type="text" class="form-control" placeholder="Enter location" name="location">
+                <input type="text" class="form-control" placeholder="Enter location" name="listing[location]" required>
+                <div class="invalid-feedback">
+                    Please enter a valid location.
+                </div>
             </div>
             <div class="row">
                 <div class="col-12 col-md-4">

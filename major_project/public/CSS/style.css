@@ -69,7 +69,7 @@ body{
     height: 100%;
     object-fit: cover;
 }
-.card{
+.listing-card{
   border: 0 !important;
 }
 .card-body{
