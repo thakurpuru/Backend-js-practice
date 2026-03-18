@@ -4,8 +4,14 @@ const ejsMate=require("ejs-mate");
 const mongoose=require("mongoose");
 const path=require("path");
 const cors=require("cors");
-const listings=require("./routes/listings.js");
-const reviews=require("./routes/reviews.js");
+const listingsRouter=require("./routes/listings.js");
+const reviewsRouter=require("./routes/reviews.js");
+const flash=require("connect-flash");
+const session=require("express-session");
+const localSStrategy=require("passport-local");
+const User=require("./models/user.js");
+const passport=require("passport");
+const userRouter=require("./routes/user.js");
 
 const app=express();
 
@@ -28,16 +34,53 @@ async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/wander');
 }
 
+const sessionOption={
+    secret:"mysupersecret",
+    resave:false,
+    saveUninitialized:true,
+    cookie : {
+        expires:Date.now()*7*24*60*60*1000,
+        maxAge: 7*24*60*60*1000,
+        httpOnly:true,
+    }
 
+};
+
+
+app.use(session(sessionOption));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localSStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 app.get("/",(req,res)=>{
     res.send("root link");
 });
 
-app.use("/listings",listings);
+app.use((req,res,next)=>{
+    res.locals.currUser=req.user;
+    res.locals.success=req.flash("succes");
+    res.locals.error=req.flash("error");
+    next();
+});
 
-app.use("/listings/:id/reviews",reviews);
+
+// app.get("/demoUser",async(req,res)=>{
+//     const fakeUser= new User({
+//         email:"studet@gmail.com",
+//         username:"delta-student"
+//     });
+//     let registerUser= await User.register(fakeUser,"helloworld");
+//     res.send(registerUser);
+// });
+
+app.use("/user",userRouter);
+app.use("/listings",listingsRouter);
+
+app.use("/listings/:id/reviews",reviewsRouter);
 
 
 

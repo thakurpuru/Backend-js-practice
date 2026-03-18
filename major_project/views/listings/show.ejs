@@ -14,14 +14,17 @@
             <p class="location"><%= listing.location %></p>
             <p class="country"><%= listing.country %></p>
         </div>
-        <div class="btn-container d-flex px-2">
-            <form action="/listings/<%= listing._id %>/edit">
-                <button type="submit" class="btn btn-danger btn-sm ml-1">Edit</button>
-            </form>
-            <form action="/listings/<%= listing._id %>?_method=DELETE" method="post">
-                <button type="submit" class="btn btn-dark btn-sm  ml-4">Delete</button>
-            </form>
-        </div>
+        <% if(currUser && currUser._id.equals(listing.owner)) {%>
+            <div class="btn-container d-flex px-2">
+                <form action="/listings/<%= listing._id %>/edit">
+                    <button type="submit" class="btn btn-danger btn-sm ml-1">Edit</button>
+                </form>
+                <form action="/listings/<%= listing._id %>?_method=DELETE" method="post">
+                    <button type="submit" class="btn btn-dark btn-sm  ml-4">Delete</button>
+                </form>
+            </div>
+          <% } %>  
+        
         <div class="mt-4 ml-2">
             <h4>Leave the review</h4>
             <form action="/listings/<%= listing._id %>/reviews" method="post" novalidate class="needs-validation">
