@@ -169,3 +169,18 @@ body{
   font-size: 14px;
 }
 
+.google-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white !important; 
+  border: 1px solid #0f0d0d !important;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.google-btn img {
+  width: 20px;
+  height: 20px;
+}

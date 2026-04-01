@@ -12,6 +12,8 @@ const localSStrategy=require("passport-local");
 const User=require("./models/user.js");
 const passport=require("passport");
 const userRouter=require("./routes/user.js");
+const GoogleStrategy=require("passport-google-oauth20").Strategy;
+require("dotenv").config();
 
 const app=express();
 
@@ -55,6 +57,42 @@ passport.use(new localSStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_clientID,
+  clientSecret: process.env.GOOGLE_clientSecret,
+  callbackURL: "http://localhost:3000/user/auth/google/callback"
+},
+async (accessToken, refreshToken, profile, done) => {
+
+  const email = profile.emails[0].value;
+
+  // 🔥 Step 1: Check if user exists by email
+  let user = await User.findOne({ email });
+
+  if (user) {
+    // 👉 User exists → link Google account
+    if (!user.googleId) {
+      user.googleId = profile.id;
+      user.avatar = profile.photos[0].value;
+      await user.save();
+    }
+    return done(null, user);
+  }
+
+  // 🔥 Step 2: Create new user (Google signup)
+  user = new User({
+    email,
+    username: profile.displayName,
+    googleId: profile.id,
+    avatar: profile.photos[0].value
+  });
+
+  await user.save();
+
+  return done(null, user);
+}));
+
+
 
 app.get("/",(req,res)=>{
     res.send("root link");
@@ -76,7 +114,6 @@ app.use((req,res,next)=>{
 //     let registerUser= await User.register(fakeUser,"helloworld");
 //     res.send(registerUser);
 // });
-
 app.use("/user",userRouter);
 app.use("/listings",listingsRouter);
 
@@ -93,6 +130,6 @@ app.use((err,req,res,next)=>{
     let {status=500,message="Something went wrong"}=err; 
     res.status(status).render("error.ejs",{message});
 });
-app.listen(8080,()=>{
+app.listen(3000,()=>{
     console.log("Listening on port 8080");
 });

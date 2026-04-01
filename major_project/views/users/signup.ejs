@@ -2,6 +2,7 @@
 
 <div class="d-flex justify-content-center align-items-center min-vh-100">
     <div class="col-12 col-md-8 col-lg-6 text-dark">
+        
         <h2 class="ps-3 d-none d-md-block">SignUp on Wanderlust</h2>
         <h4 class="ps-3 d-block d-md-none">SignUp on Wanderlust</h4>
         <form action="/user/signup" method="post" novalidate class="needs-validation">
@@ -38,5 +39,13 @@
                 </div>
             </div>
         </form>
+        <div class="col-12 mt-3 mb-2">
+            <form action="/user/auth/google" method="get">
+                <button type="submit" class="btn btn-lg w-100 google-btn">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" />
+                    SignUp with Google
+                </button>
+            </form>
+        </div>
     </div>
 </div>
