@@ -17,3 +17,21 @@
     }, false)
   })
 })();
+
+
+// document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+//     let fileName = e.target.files[0].name;
+//     e.target.nextElementSibling.innerText = fileName;
+// });
+
+//  document.getElementById("image").addEventListener("change", function () {
+//     let fileName = this.files[0]?.name || "No chosen file";
+
+//     function format(name) {
+//       if (name.length <= 30) return name;
+//       return name.slice(0, 12) + "..." + name.slice(-10);
+//     }
+
+//     this.nextElementSibling.innerText = format(fileName);
+//     this.nextElementSibling.title = fileName; // full name on hover
+//   });

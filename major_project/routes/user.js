@@ -6,13 +6,15 @@ const { svaeRedirectUrl, isloginWithGoogle } = require("../middlewere");
 
 const userController=require("../controllers/user.js");
 
-router.get("/signup",userController.renderSingUpForm);
+router
+  .route("/signup")
+  .get(userController.renderSingUpForm)
+  .post(userController.userSingUp);
 
-router.post("/signup",userController.userSingUp);
-
-router.get("/login",userController.renderLoginForm);
-
-router.post("/login",svaeRedirectUrl,isloginWithGoogle,passport.authenticate("local",{failureRedirect:"/user/login",failureFlash:true}),userController.userLogin);
+router
+  .route("/login")
+  .get(userController.renderLoginForm)
+  .post(svaeRedirectUrl,isloginWithGoogle,passport.authenticate("local",{failureRedirect:"/user/login",failureFlash:true}),userController.userLogin);
 
 router.get("/logout",userController.userLogout);
 

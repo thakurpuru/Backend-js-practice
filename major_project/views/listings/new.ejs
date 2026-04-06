@@ -1,10 +1,10 @@
 <% layout("./layouts/boilerplate") %>
 
-<div class="d-flex justify-content-center align-items-center min-vh-100">
-    <div class="col-12 col-md-8 col-lg-6 text-dark">
-        <h2 class="ps-3">Add Your Place</h2>
+<div class="form-wrapper">
+  <div class="form-card">
+    <h2 class="form-title">Add Your Place</h2>
 
-        <form action="/listings" method="post" novalidate class="needs-validation">
+    <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
             
             <div class="form-group my-2">
                 <label>Title</label>
@@ -21,14 +21,20 @@
                     Please enter a valid description.
                 </div>
             </div>
+            <div class="form-group">
+                <label>Upload Image</label>
 
-            <div class="form-group my-2">
-                <label>Image URL/link</label>
-                <input type="text" class="form-control" placeholder="Enter image URL/link" name="listing[image][url]" required>
-                <div class="invalid-feedback">
-                    Please enter a valid image URL/link.
+                <div class="custom-upload">
+                    <input type="file" id="image" name="listing[image][url]" class="form-control" required>
+                    <span>📁 Choose Image</span>
+                    <div class="invalid-feedback">Please upload an image.</div>
                 </div>
             </div>
+            <!-- <label class="form-lable">Upload Image</label>
+            <input type="file" class="form-control"  name="listing[image][url]" required>
+            <div class="invalid-feedback">
+                Please Choose a valid image.
+            </div> -->
 
             <div class="row">
                 <div class="form-group col my-2">
@@ -58,14 +64,10 @@
                     Please enter a valid location.
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    <button type="submit" class="btn btn-danger my-2 rounded p-2 w-100">
-                        Add New Listing
-                    </button>
-                </div>
-            </div>
+            <button type="submit" class="modern-btn">
+                Add New Listing
+            </button>
 
         </form>
-    </div>
+  </div>
 </div>
